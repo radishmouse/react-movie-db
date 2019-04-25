@@ -8,14 +8,18 @@ function GenreList(props) {
                 props.genres.map((genre, i) => {
                     // Using explicit return, so that
                     // we can have multiple statements
-                    console.log(genre);
+                    
                     return (
                         <li key={i}>
                             <a 
                                 href="#"
                                 onClick={() => {
-                                    console.log(genre);
+                                    // When you need to pass something other
+                                    // than the event, you need an anonymous function
+                                    props.handleClick(genre);
                                 }}
+                                // onClick={props.handleClick}  // This sends the whole event to props.handleClic
+                                // onClick={props.handleClick(genre)}  // DON'T DO THIS. This calls props.handleClick before you hand it to the browser
                             >{genre}</a>
                         </li>
                     );

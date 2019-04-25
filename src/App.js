@@ -10,17 +10,34 @@ import ActorList from './ActorList';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      genre: ''
+    }
   }
   render() {
     // console.log(Object.keys(movies));
     return (
       <div className="App">
-        <GenreList genres={Object.keys(movies)}/>
+        <GenreList genres={Object.keys(movies)} handleClick={this._setGenre}/>
         <MovieList movies={Object.keys(movies.documentaries)}/>
         <ActorList actors={movies.documentaries.robocop} />
       </div>
     );
+  }
+
+  // Helper functions should be defined in the same
+  // class where the state is.
+  _setGenre = (genre) => {
+    console.log(`The child component said the genre is ${genre}`);
+    // Instead of accepting the event object,
+    // just accept the smallest piece of information
+    // needed to set state.
+    this.setState({
+      // genre: genre
+      // When the key and value are the same word,
+      // you can omit the ": genre"
+      genre
+    });
   }
 }
 
